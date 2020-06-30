@@ -1,6 +1,7 @@
 package system
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"go-admin/models"
@@ -22,6 +23,7 @@ func GetMenuList(c *gin.Context) {
 	Menu.Visible = c.Request.FormValue("visible")
 	Menu.Title = c.Request.FormValue("title")
 	Menu.DataScope = tools.GetUserIdStr(c)
+	fmt.Println("MenuName==", Menu.MenuName, " Visible==", Menu.Visible, " Title==", Menu.Title)
 	result, err := Menu.SetMenu()
 	tools.HasError(err, "抱歉未找到相关信息", -1)
 
@@ -154,6 +156,7 @@ func DeleteMenu(c *gin.Context) {
 func GetMenuRole(c *gin.Context) {
 	var Menu models.Menu
 	result, err := Menu.SetMenuRole(tools.GetRoleName(c))
+
 	tools.HasError(err, "获取失败", 500)
 	app.OK(c, result, "")
 }

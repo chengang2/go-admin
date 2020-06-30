@@ -3,6 +3,7 @@ package jwtauth
 import (
 	"crypto/rsa"
 	"errors"
+	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	config2 "go-admin/tools/config"
@@ -451,7 +452,6 @@ func (mw *GinJWTMiddleware) LoginHandler(c *gin.Context) {
 	// Create the token
 	token := jwt.New(jwt.GetSigningMethod(mw.SigningAlgorithm))
 	claims := token.Claims.(jwt.MapClaims)
-
 	if mw.PayloadFunc != nil {
 		for key, value := range mw.PayloadFunc(data) {
 			claims[key] = value
@@ -462,7 +462,8 @@ func (mw *GinJWTMiddleware) LoginHandler(c *gin.Context) {
 	claims["exp"] = expire.Unix()
 	claims["orig_iat"] = mw.TimeFunc().Unix()
 	tokenString, err := mw.signedString(token)
-
+	fmt.Println("tokenString==", tokenString, "err==", err)
+	fmt.Println("claims==", claims)
 	if err != nil {
 		mw.unauthorized(c, http.StatusOK, mw.HTTPStatusMessageFunc(ErrFailedTokenCreation, c))
 		return

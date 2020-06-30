@@ -7,8 +7,8 @@ import (
 )
 
 type RoleMenu struct {
-	RoleId   int  `gorm:"type:int(11)"`
-	MenuId   int  `gorm:"type:int(11)"`
+	RoleId   int    `gorm:"type:int(11)"`
+	MenuId   int    `gorm:"type:int(11)"`
 	RoleName string `gorm:"type:varchar(128)"`
 	CreateBy string `gorm:"type:varchar(128)"`
 	UpdateBy string `gorm:"type:varchar(128)"`
@@ -65,9 +65,9 @@ func (rm *RoleMenu) GetIDS() ([]MenuPath, error) {
 }
 
 func (rm *RoleMenu) DeleteRoleMenu(roleId int) (bool, error) {
-	if err := orm.Eloquent.Table("sys_role_dept").Where("role_id = ?", roleId).Delete(&rm).Error; err != nil {
-		return false, err
-	}
+	//if err := orm.Eloquent.Table("sys_role_dept").Where("role_id = ?", roleId).Delete(&rm).Error; err != nil {
+	//	return false, err
+	//}
 	if err := orm.Eloquent.Table("sys_role_menu").Where("role_id = ?", roleId).Delete(&rm).Error; err != nil {
 		return false, err
 	}
@@ -128,6 +128,7 @@ func (rm *RoleMenu) Insert(roleId int, menuId []int) (bool, error) {
 	}
 	orm.Eloquent.Exec(sql)
 	sql2 = sql2[0:len(sql2)-1] + ";"
+	fmt.Println("sql2==", sql2)
 	orm.Eloquent.Exec(sql2)
 
 	return true, nil

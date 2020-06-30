@@ -1,13 +1,14 @@
 package system
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/google/uuid"
+	log "github.com/sirupsen/logrus"
 	"go-admin/models"
 	"go-admin/tools"
 	"go-admin/tools/app"
-	log "github.com/sirupsen/logrus"
 )
 
 // @Summary 列表数据
@@ -34,7 +35,7 @@ func GetSysUserList(c *gin.Context) {
 		pageIndex = tools.StrToInt(err, index)
 	}
 
-	data.Username = c.Request.FormValue("userName")
+	data.Username = c.Request.FormValue("username")
 	data.Status = c.Request.FormValue("status")
 	data.Phone = c.Request.FormValue("phone")
 
@@ -62,6 +63,7 @@ func GetSysUser(c *gin.Context) {
 	var SysUser models.SysUser
 	SysUser.UserId, _ = tools.StringToInt(c.Param("userId"))
 	result, err := SysUser.Get()
+	fmt.Printf("cg_result: %+v", result)
 	tools.HasError(err, "抱歉未找到相关信息", -1)
 	var SysRole models.SysRole
 	var Post models.Post

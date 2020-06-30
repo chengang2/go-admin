@@ -84,6 +84,7 @@ func registerSysTableRouter(v1 *gin.RouterGroup) {
 }
 
 func sysCheckRoleRouterInit(r *gin.RouterGroup, authMiddleware *jwtauth.GinJWTMiddleware) {
+
 	r.POST("/login", authMiddleware.LoginHandler)
 	// Refresh time can be longer than token timeout
 	r.GET("/refresh_token", authMiddleware.RefreshHandler)
@@ -99,6 +100,7 @@ func sysCheckRoleRouterInit(r *gin.RouterGroup, authMiddleware *jwtauth.GinJWTMi
 	registerConfigRouter(v1, authMiddleware)
 	registerUserCenterRouter(v1, authMiddleware)
 	registerPostRouter(v1, authMiddleware)
+
 	registerMenuRouter(v1, authMiddleware)
 	registerLoginLogRouter(v1, authMiddleware)
 	registerOperLogRouter(v1, authMiddleware)

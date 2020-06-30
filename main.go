@@ -53,10 +53,10 @@ import (
 //		}
 //	}()
 //	log.Println("Server Run ", config.ApplicationConfig.Host+":"+config.ApplicationConfig.Port)
-//	log.Println("Enter Control + C Shutdown Server")
-//	// 等待中断信号以优雅地关闭服务器（设置 5 秒的超时时间）
-//	quit := make(chan os.Signal)
-//	signal.Notify(quit, os.Interrupt)
+////	log.Println("Enter Control + C Shutdown Server")
+////	// 等待中断信号以优雅地关闭服务器（设置 5 秒的超时时间）
+////	quit := make(chan os.Signal)
+////	signal.Notify(quit, os.Interrupt)
 //	<-quit
 //	log.Println("Shutdown Server ...")
 //
