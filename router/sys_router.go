@@ -100,7 +100,6 @@ func sysCheckRoleRouterInit(r *gin.RouterGroup, authMiddleware *jwtauth.GinJWTMi
 	registerConfigRouter(v1, authMiddleware)
 	registerUserCenterRouter(v1, authMiddleware)
 	registerPostRouter(v1, authMiddleware)
-
 	registerMenuRouter(v1, authMiddleware)
 	registerLoginLogRouter(v1, authMiddleware)
 	registerOperLogRouter(v1, authMiddleware)
