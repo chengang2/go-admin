@@ -61,6 +61,9 @@ func (e *SysOperLog) GetPage(pageSize int, pageIndex int) ([]SysOperLog, int, er
 	if e.OperIp != "" {
 		table = table.Where("oper_ip = ?", e.OperIp)
 	}
+	if e.Title != "" {
+		table = table.Where("title = ?", e.Title)
+	}
 	if e.Status != "" {
 		table = table.Where("status = ?", e.Status)
 	}

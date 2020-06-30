@@ -39,6 +39,8 @@ func GetOperLogList(c *gin.Context) {
 	data.OperName = c.Request.FormValue("operName")
 	data.Status = c.Request.FormValue("status")
 	data.OperIp = c.Request.FormValue("operIp")
+	data.Title = c.Request.FormValue("title")
+	data.BusinessType = c.Request.FormValue("businessType")
 	result, count, err := data.GetPage(pageSize, pageIndex)
 	tools.HasError(err, "", -1)
 
