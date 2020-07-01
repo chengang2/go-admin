@@ -1,7 +1,6 @@
 package system
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/google/uuid"
@@ -63,7 +62,6 @@ func GetSysUser(c *gin.Context) {
 	var SysUser models.SysUser
 	SysUser.UserId, _ = tools.StringToInt(c.Param("userId"))
 	result, err := SysUser.Get()
-	fmt.Printf("cg_result: %+v", result)
 	tools.HasError(err, "抱歉未找到相关信息", -1)
 	var SysRole models.SysRole
 	var Post models.Post

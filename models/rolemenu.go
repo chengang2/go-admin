@@ -128,7 +128,6 @@ func (rm *RoleMenu) Insert(roleId int, menuId []int) (bool, error) {
 	}
 	orm.Eloquent.Exec(sql)
 	sql2 = sql2[0:len(sql2)-1] + ";"
-	fmt.Println("sql2==", sql2)
 	orm.Eloquent.Exec(sql2)
 
 	return true, nil
